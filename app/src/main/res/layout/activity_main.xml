@@ -10,19 +10,21 @@
         android:id="@+id/tv_pokeBXP"
         android:layout_width="75dp"
         android:layout_height="30dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="43dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_pokeHei" />
 
     <TextView
-        android:id="@+id/tv_pokeBXP2"
+        android:id="@+id/tv_pokeAbility"
         android:layout_width="75dp"
         android:layout_height="30dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_pokeBXP" />
 
@@ -31,8 +33,9 @@
         android:layout_width="75dp"
         android:layout_height="30dp"
         android:layout_marginTop="37dp"
-        android:layout_marginEnd="43dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_pokeWei" />
 
@@ -41,8 +44,9 @@
         android:layout_width="75dp"
         android:layout_height="30dp"
         android:layout_marginTop="39dp"
-        android:layout_marginEnd="41dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_pokeNum" />
 
@@ -50,18 +54,16 @@
         android:id="@+id/pokemonImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="43dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/listView"
         app:layout_constraintTop_toBottomOf="@+id/pokemonName"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="209dp"
-        android:layout_height="561dp"
+        android:layout_width="162dp"
+        android:layout_height="556dp"
         android:layout_marginStart="7dp"
         android:layout_marginTop="42dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,12 +73,10 @@
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="41dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/searchBar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -84,7 +84,7 @@
         android:layout_width="275dp"
         android:layout_height="49dp"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Pokmon Name"
         android:inputType="text"
@@ -95,19 +95,19 @@
         android:id="@+id/pokemonName"
         android:layout_width="128dp"
         android:layout_height="44dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="43dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchButton" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBar" />
 
     <TextView
         android:id="@+id/pokeNumber"
         android:layout_width="75dp"
         android:layout_height="30dp"
         android:layout_marginTop="53dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="20dp"
         android:text="Number"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/tv_pokeNum"
@@ -118,7 +118,7 @@
         android:layout_width="75dp"
         android:layout_height="30dp"
         android:layout_marginTop="39dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="20dp"
         android:text="Weight"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/tv_pokeWei"
@@ -129,7 +129,7 @@
         android:layout_width="75dp"
         android:layout_height="30dp"
         android:layout_marginTop="37dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="20dp"
         android:text="Height"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/tv_pokeHei"
@@ -139,8 +139,8 @@
         android:id="@+id/pokeBaseXP"
         android:layout_width="75dp"
         android:layout_height="30dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="20dp"
         android:text="Base XP"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/tv_pokeBXP"
@@ -150,11 +150,11 @@
         android:id="@+id/pokeAbility"
         android:layout_width="75dp"
         android:layout_height="30dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
         android:text="Ability"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_pokeBXP2"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pokeAbility"
         app:layout_constraintTop_toBottomOf="@+id/pokeBaseXP" />
 
     <TextView
@@ -162,8 +162,9 @@
         android:layout_width="75dp"
         android:layout_height="30dp"
         android:layout_marginTop="53dp"
-        android:layout_marginEnd="41dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pokemonImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>
