@@ -108,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
 
                     String pokemon_basexp = response.getString("base_experience");
                     tvPokeBXP.setText(pokemon_basexp);
+
+                    String pokemon_ability = response.getJSONArray("abilities").getJSONObject(0).getJSONObject("ability").getString("name");
+                    tvPokeAbility.setText(pokemon_ability);
+
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
