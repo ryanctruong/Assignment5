@@ -33,8 +33,8 @@ import java.util.HashSet;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView tvPokeNum, tvPokeWei, tvPokeHei, tvPokeBXP, tvPokeAbility,pokeName, pokeNum, pokeWei,
-    pokeHei,pokeBaseXP, pokeAbility;
+    TextView tvPokeNum, tvPokeWei, tvPokeHei, tvPokeBXP, tvPokeMove, tvPokeAbility, pokeName, pokeNum, pokeWei,
+    pokeHei,pokeBaseXP, pokeMove, pokeAbility;
 
     Button searchBut;
     EditText searchB;
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         tvPokeWei = findViewById(R.id.tv_pokeWei);
         tvPokeHei = findViewById(R.id.tv_pokeHei);
         tvPokeBXP = findViewById(R.id.tv_pokeBXP);
+        tvPokeMove = findViewById(R.id.tv_pokeMove);
         tvPokeAbility = findViewById(R.id.tv_pokeAbility);
 
         pokeName = findViewById(R.id.pokemonName);
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         pokeWei = findViewById(R.id.pokeWeight);
         pokeHei = findViewById(R.id.pokeHeight);
         pokeBaseXP = findViewById(R.id.pokeBaseXP);
+        pokeMove = findViewById(R.id.pokeMove);
         pokeAbility = findViewById(R.id.pokeAbility);
 
         searchBut = findViewById(R.id.searchButton);
@@ -115,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
 
                     String pokemon_basexp = response.getString("base_experience");
                     tvPokeBXP.setText(pokemon_basexp);
+
+                    String pokemon_move = response.getJSONArray("moves").getJSONObject(0).getJSONObject("move").getString("name");
+                    tvPokeMove.setText(pokemon_move);
 
                     String pokemon_ability = response.getJSONArray("abilities").getJSONObject(0).getJSONObject("ability").getString("name");
                     tvPokeAbility.setText(pokemon_ability);
