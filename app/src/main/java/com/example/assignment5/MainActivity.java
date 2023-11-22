@@ -28,6 +28,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashSet;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +46,12 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             TextView tickerTextView = (TextView) findViewById(R.id.searchBar);
             String ticker = tickerTextView.getText().toString();
-            getInfo(ticker);
+            if(validResponse(ticker)){
+                getInfo(ticker);
+            } else{
+                Toast.makeText(getApplicationContext(),"Incorrect Input", Toast.LENGTH_LONG).show();
+            }
+
         }
     };
 
@@ -112,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     String pokemon_ability = response.getJSONArray("abilities").getJSONObject(0).getJSONObject("ability").getString("name");
                     tvPokeAbility.setText(pokemon_ability);
 
+                    Toast.makeText(getApplicationContext(),"Pokemon Found", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -119,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError(ANError anError) {
-                Toast.makeText(getApplicationContext(),"Error on getting data ", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Pokemon Not Found", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -134,6 +142,33 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return sb.toString();
+    }
+
+    public boolean validResponse(String s){
+        HashSet<Character> hs = new HashSet<>();
+        hs.add('%'); hs.add('!');
+        hs.add('&'); hs.add(';');
+        hs.add('*'); hs.add(':');
+        hs.add('('); hs.add('<');
+        hs.add('@'); hs.add('>');
+        hs.add(')');
+
+        if(Character.isDigit(s.charAt(0))){
+            if(Integer.parseInt(s) > 1010 || Integer.parseInt(s) < 0){
+                return false;
+            } else{
+                return true;
+            }
+        }
+
+        for(int i = 0; i < s.length(); i++){
+            char a = s.charAt(i);
+            if(hs.contains(a) || Character.isDigit(a)){
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }
