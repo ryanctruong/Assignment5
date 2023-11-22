@@ -159,11 +159,7 @@ public class MainActivity extends AppCompatActivity {
         hs.add(')');
 
         if(Character.isDigit(s.charAt(0))){
-            if(Integer.parseInt(s) > 1010 || Integer.parseInt(s) < 0){
-                return false;
-            } else{
-                return true;
-            }
+            return Integer.parseInt(s) <= 1010 && Integer.parseInt(s) > 0;
         }
 
         for(int i = 0; i < s.length(); i++){
