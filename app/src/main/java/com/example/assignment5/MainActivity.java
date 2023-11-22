@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         lv = findViewById(R.id.listView);
 
         searchBut.setOnClickListener(localListener);
-
     }
 
     private void getInfo(String ticker){
@@ -91,13 +90,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    String pokemon_name = response.getString("name");
+                    pokeName.setText(firstLetter(pokemon_name));
 
-
-                    String imageUrl = response.getString("id");
-                    tvPokeNum.setText(imageUrl);
                     String image_url = response.getJSONObject("sprites").
                             getJSONObject("other").getJSONObject("official-artwork").getString("front_default");
                     Picasso.get().load(image_url).into(pokemonImg);
+
+                    String pokemon_id = response.getString("id");
+                    tvPokeNum.setText(pokemon_id);
+
+                    String pokemon_weight = response.getString("weight");
+                    tvPokeWei.setText(pokemon_weight);
+
+                    String pokemon_height = response.getString("height");
+                    tvPokeHei.setText(pokemon_height);
+
+                    String pokemon_basexp = response.getString("base_experience");
+                    tvPokeBXP.setText(pokemon_basexp);
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -109,4 +119,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public String firstLetter(String s){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < s.length(); i++){
+            if(i == 0){
+                sb.append(Character.toUpperCase(s.charAt(i)));
+            } else{
+                sb.append(s.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
+
 }
