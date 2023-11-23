@@ -62,16 +62,11 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    FirebaseDatabase fb;
-    DatabaseReference db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AndroidNetworking.initialize(getApplicationContext());
         setContentView(R.layout.activity_main);
-
-        fb = FirebaseDatabase.getInstance();
-        db = fb.getReference();
 
         tvPokeNum = findViewById(R.id.tv_pokeNum);
         tvPokeWei = findViewById(R.id.tv_pokeWei);
