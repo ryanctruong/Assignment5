@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -97,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
         searchBut.setOnClickListener(localListener);
         deleteBut.setOnClickListener(delete_from_list);
         clearBut.setOnClickListener(clear_profile);
+
+        lv.setOnItemClickListener(getProfile);
     }
 
     private void getInfo(String ticker){
@@ -220,16 +223,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     View.OnClickListener delete_from_list = v -> {
-        String selection = "_id = (SELECT MIN(_id) FROM " + PokemonDB.TABLE_NAME + ")";
-        int deletedRows = getContentResolver().delete(PokemonDB.CONTENT_URI, selection, null);
+        int deletedRows = getContentResolver().delete(PokemonDB.CONTENT_URI, null, null);
 
         if (deletedRows > 0) {
-            Toast.makeText(getApplicationContext(), "Oldest Entry deleted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), deletedRows + " Pokemon deleted", Toast.LENGTH_SHORT).show();
             updateListUI();
         } else {
             Toast.makeText(getApplicationContext(), "No Pokemon to delete", Toast.LENGTH_SHORT).show();
         }
     };
+
 
     View.OnClickListener clear_profile = new View.OnClickListener() {
         @Override
@@ -243,6 +246,15 @@ public class MainActivity extends AppCompatActivity {
             tvPokeBXP.setText(R.string.blank);
             tvPokeMove.setText(R.string.blank);
             tvPokeAbility.setText(R.string.blank);
+        }
+    };
+
+    AdapterView.OnItemClickListener getProfile = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+            String pokeID = cursor.getString(1);
+            getInfo(pokeID);
         }
     };
 
