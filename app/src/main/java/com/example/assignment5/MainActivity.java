@@ -2,6 +2,8 @@ package com.example.assignment5;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
     TextView tvPokeNum, tvPokeWei, tvPokeHei, tvPokeBXP, tvPokeMove, tvPokeAbility, pokeName, pokeNum, pokeWei,
     pokeHei,pokeBaseXP, pokeMove, pokeAbility;
 
-    Button searchBut;
+    Button searchBut, deleteBut, clearBut;
     EditText searchB;
     ImageView pokemonImg;
     ListView lv;
+    SimpleCursorAdapter adapter;
+    Cursor cursor;
+
 
     private final View.OnClickListener localListener = new View.OnClickListener(){
         @Override
@@ -82,11 +88,15 @@ public class MainActivity extends AppCompatActivity {
         pokeAbility = findViewById(R.id.pokeAbility);
 
         searchBut = findViewById(R.id.searchButton);
+        deleteBut = findViewById(R.id.deleteButton);
+        clearBut = findViewById(R.id.clearButton);
         searchB = findViewById(R.id.searchBar);
         pokemonImg = findViewById(R.id.pokemonImage);
         lv = findViewById(R.id.listView);
 
         searchBut.setOnClickListener(localListener);
+        deleteBut.setOnClickListener(delete_from_list);
+        clearBut.setOnClickListener(clear_profile);
     }
 
     private void getInfo(String ticker){
@@ -124,6 +134,16 @@ public class MainActivity extends AppCompatActivity {
                     String pokemon_ability = response.getJSONArray("abilities").getJSONObject(0).getJSONObject("ability").getString("name");
                     tvPokeAbility.setText(pokemon_ability);
 
+                    ContentValues values = new ContentValues();
+
+                    values.put(PokemonDB.COL1_NAME, tvPokeNum.getText().toString());
+
+                    values.put(PokemonDB.COL2_NAME, pokeName.getText().toString());
+
+                    getContentResolver().insert(PokemonDB.CONTENT_URI, values);
+
+                    updateListUI();
+
                     Toast.makeText(getApplicationContext(),"Pokemon Found", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -150,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean validResponse(String s){
+        if(s.length() < 1){
+            return false;
+        }
         HashSet<Character> hs = new HashSet<>();
         hs.add('%'); hs.add('!');
         hs.add('&'); hs.add(';');
@@ -171,5 +194,58 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+    String[] fromColumns = {
+            PokemonDB.COL1_NAME,
+            PokemonDB.COL2_NAME,
+    };
+
+    int[] toViews = {
+            R.id.tv_pokemon_national_number,
+            R.id.tv_pokemon_name
+    };
+
+    public void updateListUI() {
+        Cursor cursor = getContentResolver().query(PokemonDB.CONTENT_URI, null, null, null, null);
+        adapter = new SimpleCursorAdapter(
+                getApplicationContext(),
+                R.layout.list_item_pokemon,
+                cursor,
+                fromColumns,
+                toViews,
+                0
+        );
+
+        lv.setAdapter(adapter);
+    }
+
+    View.OnClickListener delete_from_list = v -> {
+        String selection = "_id = (SELECT MIN(_id) FROM " + PokemonDB.TABLE_NAME + ")";
+        int deletedRows = getContentResolver().delete(PokemonDB.CONTENT_URI, selection, null);
+
+        if (deletedRows > 0) {
+            Toast.makeText(getApplicationContext(), "Oldest Entry deleted", Toast.LENGTH_SHORT).show();
+            updateListUI();
+        } else {
+            Toast.makeText(getApplicationContext(), "No Pokemon to delete", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    View.OnClickListener clear_profile = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            searchB.setText("");
+            pokeName.setText("___");
+            pokemonImg.setImageResource(R.drawable.ic_launcher_background);
+            tvPokeNum.setText("___");
+            tvPokeWei.setText("___");
+            tvPokeHei.setText("___");
+            tvPokeBXP.setText("___");
+            tvPokeMove.setText("___");
+            tvPokeAbility.setText("___");
+        }
+    };
+
+
 
 }

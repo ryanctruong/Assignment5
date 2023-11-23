@@ -10,17 +10,28 @@
         android:layout_height="wrap_content"
         tools:context=".MainActivity">
 
+        <Button
+        android:id="@+id/clearButton"
+        android:layout_width="167dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="19dp"
+        android:text="@string/clear"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBar" />
+
         <TextView
-            android:id="@+id/tv_pokeMove"
-            android:layout_width="170dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/blank"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pokeMove" />
+        android:id="@+id/tv_pokeMove"
+        android:layout_width="170dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/blank"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pokeMove" />
 
         <TextView
         android:id="@+id/tv_pokeBXP"
@@ -35,16 +46,16 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_pokeHei" />
 
         <TextView
-            android:id="@+id/tv_pokeAbility"
-            android:layout_width="170dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/blank"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pokeAbility" />
+        android:id="@+id/tv_pokeAbility"
+        android:layout_width="170dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/blank"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pokeAbility" />
 
         <TextView
         android:id="@+id/tv_pokeHei"
@@ -85,8 +96,8 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="162dp"
-        android:layout_height="556dp"
+        android:layout_width="163dp"
+        android:layout_height="701dp"
         android:layout_marginStart="7dp"
         android:layout_marginTop="42dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +113,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+        <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/delete"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBar" />
+
+        <EditText
         android:id="@+id/searchBar"
         android:layout_width="275dp"
         android:layout_height="49dp"
@@ -114,11 +136,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+        <TextView
         android:id="@+id/pokemonName"
         android:layout_width="128dp"
         android:layout_height="44dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="40dp"
         android:text="@string/blank"
         android:textAlignment="center"
@@ -127,7 +149,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchBar" />
 
-    <TextView
+        <TextView
         android:id="@+id/pokeNumber"
         android:layout_width="75dp"
         android:layout_height="30dp"
@@ -176,30 +198,30 @@
         app:layout_constraintTop_toBottomOf="@+id/pokeHeight" />
 
         <TextView
-            android:id="@+id/pokeAbility"
-            android:layout_width="75dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="66dp"
-            android:text="@string/ability"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pokeMove" />
+        android:id="@+id/pokeAbility"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="66dp"
+        android:text="@string/ability"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pokeMove" />
 
         <TextView
-            android:id="@+id/pokeMove"
-            android:layout_width="75dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="66dp"
-            android:text="Move"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pokeBXP" />
+        android:id="@+id/pokeMove"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="66dp"
+        android:text="@string/move"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pokeBXP" />
 
         <TextView
         android:id="@+id/tv_pokeNum"
