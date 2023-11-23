@@ -235,14 +235,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             searchB.setText("");
-            pokeName.setText("___");
+            pokeName.setText(R.string.blank);
             pokemonImg.setImageResource(R.drawable.ic_launcher_background);
-            tvPokeNum.setText("___");
-            tvPokeWei.setText("___");
-            tvPokeHei.setText("___");
-            tvPokeBXP.setText("___");
-            tvPokeMove.setText("___");
-            tvPokeAbility.setText("___");
+            tvPokeNum.setText(R.string.blank);
+            tvPokeWei.setText(R.string.blank);
+            tvPokeHei.setText(R.string.blank);
+            tvPokeBXP.setText(R.string.blank);
+            tvPokeMove.setText(R.string.blank);
+            tvPokeAbility.setText(R.string.blank);
         }
     };
 
