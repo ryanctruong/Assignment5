@@ -45,13 +45,11 @@ public class MainActivity extends AppCompatActivity {
     ImageView pokemonImg;
     ListView lv;
     SimpleCursorAdapter adapter;
-    Cursor cursor;
-
 
     private final View.OnClickListener localListener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
-            TextView tickerTextView = (TextView) findViewById(R.id.searchBar);
+            TextView tickerTextView = findViewById(R.id.searchBar);
             String ticker = tickerTextView.getText().toString();
             if(validResponse(ticker)){
                 getInfo(ticker);
